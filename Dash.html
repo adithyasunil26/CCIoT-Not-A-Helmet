@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Dashboard</h1>
+
+
+    <div class='Common control'>
+        <button type="button" id='cb'>Alert all</button>
+        <button type="button" id='cbr'>Reset all</button>
+    </div>
+
+    <div class='Helmet-1'>
+        <h2>Helmet 1</h2>
+        <p>Temperature: <span id='t1'></span></p>
+        <p>Humidity: <span id='h1'></span></p>
+        <p>Noise level exceeded: <span id='n1'></span></p>
+        <p>Gas sensor reading: <span id='g1'></span></p>
+        <p>Danger alert: <span id='d1'></span></p>
+        <button type="button" id='but1'>Alert</button>
+        <button type="button" id='butt1'>Reset</button>
+    </div>
+
+    <div class='Helmet-2'>
+        <h2>Helmet 2</h2>
+        <p>Temperature: <span id='t2'></span></p>
+        <p>Humidity: <span id='h2'></span></p>
+        <p>Noise level exceeded: <span id='n2'></span></p>
+        <p>Gas sensor reading: <span id='g2'></span></p>
+        <p>Danger alert: <span id='d2'></span></p>
+        <button type="button" id='but2'>Alert</button>
+        <button type="button" id='butt2'>Reset</button>
+    </div>
+
+    <script>
+        (function () {
+            
+            var tmp1 = document.getElementById('t1');
+            var tmp2 = document.getElementById('t2');
+            
+            var hum1 = document.getElementById('h1');
+            var hum2 = document.getElementById('h2');
+            
+            var nl1= document.getElementById('n1');
+            var nl2 = document.getElementById('n2');
+
+            var gr1 = document.getElementById('g1');
+            var gr2 = document.getElementById('g2');
+
+            var da1 = document.getElementById('d1');
+            var da2 = document.getElementById('d2');
+
+            var b1 = document.getElementById('but1');
+            var b2 = document.getElementById('but2');
+            
+            var bu1 = document.getElementById('butt1');
+            var bu2 = document.getElementById('butt2');
+
+            var c = document.getElementById('cb');
+            var cr = document.getElementById('cbr');
+
+            b1.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff=ff.concat(String(tmp1.innerHTML));
+                ff=ff.concat("&field2=");
+                ff=ff.concat(String(hum1.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl1.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr1.innerHTML));
+                var msg= 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=1';
+                xhr.open('GET', msg, true);
+                xhr.send();
+            }
+
+            bu1.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff = ff.concat(String(tmp1.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum1.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl1.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr1.innerHTML));
+                var msg = 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=0';
+                xhr.open('GET', msg, true);
+                xhr.send();
+            }
+
+            b2.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff = ff.concat(String(tmp2.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum2.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl2.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr2.innerHTML));
+                var msg= 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=1';
+                xhr.open('GET',msg, true);
+                xhr.send();
+            }
+
+            bu2.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff = ff.concat(String(tmp2.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum2.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl2.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr2.innerHTML));
+                var msg = 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=0';
+                xhr.open('GET', msg, true);
+                xhr.send();
+            }
+
+            c.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff = ff.concat(String(tmp1.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum1.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl1.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr1.innerHTML));
+                var msg = 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=1';
+                xhr.open('GET', msg, true);
+                xhr.send();
+
+                xhr = new XMLHttpRequest();
+                ff = "&field1=";
+                ff = ff.concat(String(tmp2.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum2.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl2.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr2.innerHTML));
+                msg = 'https://api.thingspeak.com/update?api_key=N62CPTT0YGQTXD6G' + ff + '&field5=1';
+                xhr.open('GET', msg, true);
+                xhr.send();
+            }
+
+            cr.onclick = function () {
+                var xhr = new XMLHttpRequest();
+                var ff = "&field1=";
+                ff = ff.concat(String(tmp1.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum1.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl1.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr1.innerHTML));
+                var msg = 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=0';
+                xhr.open('GET', msg, true);
+                xhr.send();
+
+                xhr = new XMLHttpRequest();
+                ff = "&field1=";
+                ff = ff.concat(String(tmp2.innerHTML));
+                ff = ff.concat("&field2=");
+                ff = ff.concat(String(hum2.innerHTML));
+                ff = ff.concat("&field3=");
+                ff = ff.concat(String(nl2.innerHTML));
+                ff = ff.concat("&field4=");
+                ff = ff.concat(String(gr2.innerHTML));
+                msg = 'https://api.thingspeak.com/update?api_key=yourkey' + ff + '&field5=0';
+                xhr.open('GET', msg, true);
+                xhr.send();
+            }
+
+            var url1= 'https://api.thingspeak.com/channels/1150143/feeds.json?api_key=yourkey&results=1';
+            var url2 = 'https://api.thingspeak.com/channels/1168012/feeds.json?api_key=yourkey&results=1';
+           
+
+            function xhreq(url,sel) {
+                var xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var obj = JSON.parse(this.responseText);
+                        var feed = obj.feeds[0];
+                        if(sel == 1)
+                        {
+                            tmp1.innerHTML = feed.field1;
+                            hum1.innerHTML = feed.field2;
+                            nl1.innerHTML = feed.field3;
+                            gr1.innerHTML = feed.field4;
+                            da1.innerHTML = feed.field5;
+
+                        }
+                        else {
+                            tmp2.innerHTML = feed.field1;
+                            hum2.innerHTML = feed.field2;
+                            nl2.innerHTML = feed.field3;
+                            gr2.innerHTML = feed.field4;
+                            da2.innerHTML = feed.field5;
+
+                        }
+                        
+                    }
+
+                };
+
+                xhr.open('GET', url, true);
+                xhr.send();
+            }
+
+            setInterval(function () { xhreq(url1,1); }, 5000);
+            setInterval(function () { xhreq(url2,2); }, 5000);
+
+        })(); 
+    </script>
+</body>
+
+</html>
